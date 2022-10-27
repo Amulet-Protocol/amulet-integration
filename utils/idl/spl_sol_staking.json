@@ -1,0 +1,542 @@
+{
+  "version": "0.1.0",
+  "name": "spl_sol_staking",
+  "instructions": [
+    {
+      "name": "mintFromSolToAuwt",
+      "accounts": [
+        {
+          "name": "solstakingProgramMetadataState",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "solstakingProgramPosState",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "solstakingProgramPosSolPda",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "solstakingProgramLiqSolPda",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "solstakingProgramLiqAmtsol",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "solstakingProgramAuthPda",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "amtsolMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "splstakingProgramSummaryState",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "splstakingProgramStakingInstanceState",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "splstakingProgramStakedSplTa",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "splstakingProgramLiqStakedSplTa",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "splstakingProgramLiqAuwtTa",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "splstakingProgramLiqAuwtTaAuthPda",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "exchangeRateGroupState",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "auwtState",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "auwtMintAuthPda",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "auwtMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "depositor",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "amtsolTempTokenAccount",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "auwtTokenTransferTo",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "splSolStakingCallerPda",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "auwtProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "amuletSolStakingProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "associatedTokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "sysvarRent",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "solAmount",
+          "type": "u64"
+        }
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 16000,
+      "name": "AddressInvalidPIA",
+      "msg": "Address: invalid PROGRAM_INITIALIZER_AUTH"
+    },
+    {
+      "code": 16001,
+      "name": "AddressInvalidSPID",
+      "msg": "Address: invalid system program ID"
+    },
+    {
+      "code": 16002,
+      "name": "AddressInvalidSysvarRent",
+      "msg": "Address: invalid sysvar_rent"
+    },
+    {
+      "code": 16003,
+      "name": "AddressInvalidSPLMint",
+      "msg": "Address: invalid spl_mint"
+    },
+    {
+      "code": 16004,
+      "name": "AddressInvalidLPMint",
+      "msg": "Address: invalid lp_mint"
+    },
+    {
+      "code": 16005,
+      "name": "AddressInvalidLMAP",
+      "msg": "Address: invalid lp_mint_auth_pda"
+    },
+    {
+      "code": 16006,
+      "name": "AddressInvalidPAA",
+      "msg": "Address: invalid program_admin_auth"
+    },
+    {
+      "code": 16007,
+      "name": "AddressInvalidOPA",
+      "msg": "Address: invalid operator_auth"
+    },
+    {
+      "code": 16008,
+      "name": "AddressInvalidSysvarClock",
+      "msg": "Address: invalid sysvar_clock"
+    },
+    {
+      "code": 16009,
+      "name": "AddressInvalidAPCP",
+      "msg": "Address: invalid spl_sol_staking_caller_pda"
+    },
+    {
+      "code": 16010,
+      "name": "AddressInvalidAP",
+      "msg": "Address: invalid auwt_program"
+    },
+    {
+      "code": 16011,
+      "name": "AddressInvalidTPID",
+      "msg": "Address: invalid token program ID"
+    },
+    {
+      "code": 16012,
+      "name": "AddressInvalidPSST",
+      "msg": "Address: invalid program_staked_spl_ta"
+    },
+    {
+      "code": 16013,
+      "name": "AddressInvalidAM",
+      "msg": "Address: invalid auwt_mint"
+    },
+    {
+      "code": 16014,
+      "name": "AddressInvalidPLSST",
+      "msg": "Address: invalid program_liq_staked_spl_ta"
+    },
+    {
+      "code": 16015,
+      "name": "AddressInvalidPLSSTAP",
+      "msg": "Address: invalid program_liq_staked_spl_ta_auth_pda"
+    },
+    {
+      "code": 16016,
+      "name": "AddressInvalidPLAT",
+      "msg": "Address: invalid program_liq_auwt_ta"
+    },
+    {
+      "code": 16017,
+      "name": "AddressInvalidPLATAP",
+      "msg": "Address: invalid program_liq_auwt_ta_auth_pda"
+    },
+    {
+      "code": 16018,
+      "name": "AddressInvalidAMAP",
+      "msg": "Address: invalid auwt_mint_auth_pda"
+    },
+    {
+      "code": 16019,
+      "name": "AddressInvalidAuwtMint",
+      "msg": "Address: invalid auwt_mint"
+    },
+    {
+      "code": 16020,
+      "name": "AddressInvalidPSSTAP",
+      "msg": "Address: invalid program_staked_spl_ta_auth_pda"
+    },
+    {
+      "code": 16021,
+      "name": "AddressInvalidBeneficiary",
+      "msg": "Address: invalid ticket account beneficiary"
+    },
+    {
+      "code": 16022,
+      "name": "AddressInvalidPCUVSST",
+      "msg": "Address: invalid pcuv_staked_spl_ta"
+    },
+    {
+      "code": 16023,
+      "name": "AddressInvalidPoolProgram",
+      "msg": "Address: invalid pool program"
+    },
+    {
+      "code": 16024,
+      "name": "AddressInvalidPPSP",
+      "msg": "Address: invalid program_pos_sol_pda"
+    },
+    {
+      "code": 16025,
+      "name": "AddressInvalidLSAMAP",
+      "msg": "Address: invalid lp_sol_amtsol_mint_auth_pda"
+    },
+    {
+      "code": 16026,
+      "name": "AddressInvalidPLA",
+      "msg": "Address: invalid program_liq_amtsol"
+    },
+    {
+      "code": 16027,
+      "name": "AddressInvalidPLSP",
+      "msg": "Address: invalid program_liq_sol_pda"
+    },
+    {
+      "code": 16028,
+      "name": "AddressInvalidPLAAP",
+      "msg": "Address: invalid program_liq_amtsol_auth_pda"
+    },
+    {
+      "code": 16029,
+      "name": "AddressInvalidASMAP",
+      "msg": "Address: invalid amtsol_mint_auth_pda"
+    },
+    {
+      "code": 16030,
+      "name": "AddressInvalidASM",
+      "msg": "Address: invalid amtsol_mint"
+    },
+    {
+      "code": 16031,
+      "name": "AddressInvalidAMSolStkP",
+      "msg": "Address: invalid amulet_sol_staking program"
+    },
+    {
+      "code": 16032,
+      "name": "AddressInvalidSplSolStkP",
+      "msg": "Address: invalid spl_sol_staking program"
+    },
+    {
+      "code": 16033,
+      "name": "AddressInvalidATPID",
+      "msg": "Address: invalid associated program program"
+    },
+    {
+      "code": 16034,
+      "name": "AddressInvalidAdminAuth",
+      "msg": "Address: invalid admin auth"
+    },
+    {
+      "code": 16035,
+      "name": "AddressInvalidInvestmentAccount",
+      "msg": "Address: invalid investment account"
+    },
+    {
+      "code": 26000,
+      "name": "OwnerSystemProgramID",
+      "msg": "Owner: should be system program ID"
+    },
+    {
+      "code": 26001,
+      "name": "OwnerTokenProgramID",
+      "msg": "Owner: should be token program ID"
+    },
+    {
+      "code": 26002,
+      "name": "OwnerMyProgramID",
+      "msg": "Owner: sould be my program ID"
+    },
+    {
+      "code": 26003,
+      "name": "OwnerAuwtTokenProgramID",
+      "msg": "Owner: sould be auwt token program ID"
+    },
+    {
+      "code": 26004,
+      "name": "OwnerExchangeRateProgramID",
+      "msg": "Owner: sould be exchange rate program ID"
+    },
+    {
+      "code": 26005,
+      "name": "OwnerPoolProgramID",
+      "msg": "Owner: sould be pool program ID"
+    },
+    {
+      "code": 26006,
+      "name": "OwnerAmuletSolStakingProgramID",
+      "msg": "Owner: sould be amulet sol staking program ID"
+    },
+    {
+      "code": 36000,
+      "name": "CtxInvalidProgramId",
+      "msg": "Ctx: Invalid program id. For using program from another account please update id in the code"
+    },
+    {
+      "code": 36001,
+      "name": "CtxNoRemainingAccounts",
+      "msg": "Ctx: No remaining accounts"
+    },
+    {
+      "code": 46000,
+      "name": "ArgsNumberTooLow",
+      "msg": "Args: Number too low"
+    },
+    {
+      "code": 46001,
+      "name": "ArgsNumberTooHigh",
+      "msg": "Args: Number too high"
+    },
+    {
+      "code": 56000,
+      "name": "SignerInvalid",
+      "msg": "Signer: Invalid"
+    },
+    {
+      "code": 66000,
+      "name": "ConstraintInvalidTAOwner",
+      "msg": "Constraint: Invalid token account owner"
+    },
+    {
+      "code": 66001,
+      "name": "ConstraintInvalidTAMint",
+      "msg": "Constraint: Invalid token account mint"
+    },
+    {
+      "code": 66002,
+      "name": "ConstraintMinTokenAccountRent",
+      "msg": "Constraint: Need minimum token account rent"
+    },
+    {
+      "code": 66003,
+      "name": "ConstraintMintFreezeAuthNone",
+      "msg": "Constraint: mint freeze_authority should be none"
+    },
+    {
+      "code": 66004,
+      "name": "ConstraintInvalidIndex",
+      "msg": "Constraint: Invalid index"
+    },
+    {
+      "code": 66005,
+      "name": "ConstraintInvalidInvestmentOwnerIndex",
+      "msg": "Constraint: Invalid investment owner index"
+    },
+    {
+      "code": 66006,
+      "name": "ConstraintInvalidInvestmentAmount",
+      "msg": "Constraint: invalid investment amount"
+    },
+    {
+      "code": 66007,
+      "name": "ConstraintInsufficientFunds",
+      "msg": "Constraint: InsufficientFunds"
+    },
+    {
+      "code": 66008,
+      "name": "ConstraintMintSupplyBalance",
+      "msg": "Constraint: Someone minted tokens without our permission or bug found"
+    },
+    {
+      "code": 66009,
+      "name": "ConstraintInvalidPriceIndex",
+      "msg": "Constraint: Invalid price index"
+    },
+    {
+      "code": 66010,
+      "name": "ConstraintInvalidPriceSlot",
+      "msg": "Constraint: Invalid price slot"
+    },
+    {
+      "code": 66011,
+      "name": "ConstraintInvalidSplMint",
+      "msg": "Constraint: Invalid spl mint"
+    },
+    {
+      "code": 66012,
+      "name": "ConstraintInvalidAuwtMint",
+      "msg": "Constraint: Invalid auwt mint"
+    },
+    {
+      "code": 66013,
+      "name": "ConstraintInvalidWithDrawTicket",
+      "msg": "Constraint: Invalid withdraw_ticket_state"
+    },
+    {
+      "code": 66014,
+      "name": "ConstraintMinAccountRent",
+      "msg": "Constraint: Need minimum account rent"
+    },
+    {
+      "code": 66015,
+      "name": "ConstraintTicketNotReady",
+      "msg": "Constraint: Unstake ticket not ready"
+    },
+    {
+      "code": 66016,
+      "name": "ConstraintNonzeroAccountLamports",
+      "msg": "Constraint: nonzero account rent lamports"
+    },
+    {
+      "code": 66017,
+      "name": "ConstraintInvalidDepositorATAAccount",
+      "msg": "Constraint: Invalid depositor auwt ATA account"
+    },
+    {
+      "code": 66018,
+      "name": "ConstraintNonSameAdminKey",
+      "msg": "Constraint: non same admin key"
+    },
+    {
+      "code": 66019,
+      "name": "ConstraintStateProgramIsPaused",
+      "msg": "Constraint: program is paused"
+    },
+    {
+      "code": 66020,
+      "name": "ConstraintInvalidSplTokenAmounts",
+      "msg": "Constraint: invalid spl token amounts"
+    },
+    {
+      "code": 66021,
+      "name": "ConstraintNonSameOperatorKey",
+      "msg": "Constraint: non same operator key"
+    },
+    {
+      "code": 76000,
+      "name": "CalculationFailure",
+      "msg": "Calculation: general failure"
+    },
+    {
+      "code": 86000,
+      "name": "UnpackFailure",
+      "msg": "Unpack: general failure"
+    },
+    {
+      "code": 86001,
+      "name": "UnpackInvalidTokenAccount",
+      "msg": "Unpack: invalid token account"
+    },
+    {
+      "code": 96000,
+      "name": "ValidationFailure",
+      "msg": "Validation: Failure"
+    },
+    {
+      "code": 96001,
+      "name": "ValidationInsufficientAvailableAuwtAmount",
+      "msg": "Validation: Insufficient available auwt amount"
+    },
+    {
+      "code": 96002,
+      "name": "ValidationInsufficientAvailableSplTokenAmount",
+      "msg": "Validation: Insufficient available spl token amount"
+    },
+    {
+      "code": 96003,
+      "name": "ValidationInsufficientSplTokenAmount",
+      "msg": "Validation: Insufficient spl token amount"
+    }
+  ],
+  "metadata": {
+    "address": "AsLnoaRrqCbGZMn39VMo6DyiGauDMKPp3QCkkNNRet8D"
+  }
+}

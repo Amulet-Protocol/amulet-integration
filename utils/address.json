@@ -1,0 +1,80 @@
+{
+    "Programs": {
+        "AmuletSolStakingProgram": "AFX6h67CCoqcJcoFbq12dabMLDruQ38U2nogpeU7ECLa",
+        "AuwtTokenProgram": "9cwdovuEutgqDfJ9gujdRzTPgKkdJ4UNXkDP9wnxeBkM"
+    },
+    "auwtState": "9wGi3eQtYTv2Lw5pK9Ru9hyquyvBKLkA6fBQsYa9Ls1j",
+    "auwtMintAuthPda": "9hr8agnwYL72aaGdiWnDrqS1ZWDAsRZ7h7PrWQSbQkpu",
+    "auwtMint": "AuwfyqNG9bfVVSxwUrpVoVyoGftxcGSHuWxGG6YAngSC",
+    "poolProgramMetadataState": "6oeaQDkmUgYJKA3WZoPDdg6F9EB3nfqawkwHL4hYHfy",
+    "poolCpiAuthPda": "ACHLdX3MsaeRNedEP8rNLMw5Qb9ywzTAeuTKFxopS6nf",
+    "programGroupMainState": "GxmNoFbVtb8767icCJryw7H4MNapu1TFz63kdkshXCGP",
+    "programSummaryState": "8ViVKyVv1myjG6CMbg59VFgLHzWdLwz3xvJEhotSJFra",
+    "splSolStakingCallerPda": "b5ZKQfGSiD5rWLPEHD4Qb9f8Unqjh2gHM6uvx65fmua",
+    "stakingInstance": {
+        "amtsolMint": {
+            "programStakingInstanceState": "HNhPNHkp3RobeJzepNzyVyewtAaoF3QCCvtBTxKJVnRX",
+            "programStakedSplTa": "BQUHYmLH8St7j9kTWExd19QjoDuxrha7Mgp32M7zvS84",
+            "programLiqStakedSplTa": "5F5DxCGK9CRTbyw3bxNw6wkbnmsYqrGxbTtRvEsXpCyC",
+            "programLiqAuwtTaAuthPda": "7Wv8P7qZJhrZ1P6BZ5WDF8uigDASGNBUxbPFRdmQhNic",
+            "programLiqAuwtTa": "CEEDq4J9UiQX3SSuGz4CWqrARgLyxXb84HBVHAz3LryN"
+        }
+    },
+    "products": {
+        "1": {
+            "name": "Raydium",
+            "productStatePda": "ERtAtfCyoD21CpBzSrgVxifKyXRqqoJC2cH1byNSH8Yr",
+            "individualPoolStatePda": "4ZwRL1V4L5iZ2ujQVMCdRPpj7u5gA6kwvfZ3PkpNBcUL",
+            "individualPoolLpAuwtMintAuthPda": "4fnuCM6hdgB5nH3W5aaTFQ19Jbc4omhLybq5gTyLj4Hx",
+            "individualPoolAuwtTokenAccount": "DeQ6xdBiSEirh8WGXAQBDadDVxSexM8VwsxnJYyvQq49",
+            "individualPoolLpAuwtMint": "64B9wR1ksXei2VxMFxAfuRoBh5Rgs7RQF8TPK2pFxFMG"
+        },
+        "2": {
+            "name": "Solend",
+            "productStatePda": "V4FmMKLPuZigoHGvFjv7gi4M1qBAYtAxmcFjBxsgFN9",
+            "individualPoolStatePda": "BtczqJjhNWc2VR851zpRtEfHwbzTBc29LYSLLXgkDGhz",
+            "individualPoolLpAuwtMintAuthPda": "Au5PQZThb6gqekzuxpQQwFKKYWwLE9UouBmVtwY9RLhi",
+            "individualPoolAuwtTokenAccount": "DeQ6xdBiSEirh8WGXAQBDadDVxSexM8VwsxnJYyvQq49",
+            "individualPoolLpAuwtMint": "3AP1Yx2TRxcJayrFjpqxme71D7G3hgLTfMAjJmeLqVgi"
+        },
+        "3": {
+            "name": "Tulip Protocol",
+            "productStatePda": "9unBosYh5ggfRaVpvAY2dvtX6L26crnQzRwAufATayzS",
+            "individualPoolStatePda": "FByJ7iKVLt443ZRMCV3cXeVwktL5CRkqfMxTMmKrGBhZ",
+            "individualPoolLpAuwtMintAuthPda": "4qRjVB2j16ke9HskjTQn84DjknP5B6LYGKjRAMSYAeo2",
+            "individualPoolAuwtTokenAccount": "DeQ6xdBiSEirh8WGXAQBDadDVxSexM8VwsxnJYyvQq49",
+            "individualPoolLpAuwtMint": "FVRjCdJwE6sQwubM4dEKhohBEY77U6bktZA9XGcwph1h"
+        },
+        "4": {
+            "name": "Port Finance",
+            "productStatePda": "2FEDsmRw54KrgGT9Fj52YqZiEgjKPmuL3Us3Fsf4nqgR",
+            "individualPoolStatePda": "9MwdbwMLXkEk1oxUtTdcDZhJ5P3bo8i4VXb69ZAKm3W7",
+            "individualPoolLpAuwtMintAuthPda": "DgjkXp6ty9B9sybXK9pi5RhEXSZ3qPx31iKQYY95SksM",
+            "individualPoolAuwtTokenAccount": "DeQ6xdBiSEirh8WGXAQBDadDVxSexM8VwsxnJYyvQq49",
+            "individualPoolLpAuwtMint": "BrUgwsWEM7vYfikSwDjYVMvXPLbxgYVzuF785HS9QKyB"
+        },
+        "5": {
+            "name": "Mango",
+            "productStatePda": "2UQSyy34D2bPytGZiEqmSvMJD6xAtZd95DfDPpPFxMPe",
+            "individualPoolStatePda": "Hb7rSLH7e34X7EVKR2djNkQDBd5NCcveorq8GNxiSvYk",
+            "individualPoolLpAuwtMintAuthPda": "GkhD6viUxBJfeKzrSssAq7gWkmZbCC9icpfPH7Hdj2xp",
+            "individualPoolAuwtTokenAccount": "DeQ6xdBiSEirh8WGXAQBDadDVxSexM8VwsxnJYyvQq49",
+            "individualPoolLpAuwtMint": "7v8XEM9dUgfFh9TFSMqxd784HjhuyQr389M6UwZDkjfQ"
+        },
+        "6": {
+            "name": "Orca",
+            "productStatePda": "37MdYNm2FtXX8uvRnWMqN8LqUgH3oLzbCo9fpDJWxtik",
+            "individualPoolStatePda": "H2GxgG7QgteBqeaMembon5tAN3XyPFtLKeCrgHxMxpVB",
+            "individualPoolLpAuwtMintAuthPda": "EdTUh6P9AGuoiS4FxNgHLGm6YoVoKjCR4zwPnHu6Q26j",
+            "individualPoolAuwtTokenAccount": "DeQ6xdBiSEirh8WGXAQBDadDVxSexM8VwsxnJYyvQq49",
+            "individualPoolLpAuwtMint": "FArtsKtgYFRSAyY8baWiBhbkWSNY38WnGZT4E9wL5uhU"
+        }
+    },
+    "solStakingMetadataState": "DEg9mNnxwqJQiYz2mXpVJmq8Yyx14oZ2SaYpHS7mB2mx",
+    "programPosSolPda": "CRcGqJjouECh3eJhjk7zvBAWtzcaMb8x3VcgLE3SafEB",
+    "programAuthPda": "ErhVBareJbH4EzhB3iepa6nEPWMCvPW6ASq1ZnMgjpPA",
+    "amtsolMint": "SoLW9muuNQmEAoBws7CWfYQnXRXMVEG12cQhy6LE2Zf",
+    "programLiqSolPda": "CMPTLLXg7T9kqY7ZR8gccGFMXzCdGp2jNqeG91yTsbZv",
+    "programLiqAmtsol": "14fx6JmWpXXUZsmobLXmf9hVkcqKuXytQxdzvBHGAm71",
+    "programPosState": "CaxYodGBcen2MVPSM1SKdAMHC2csnPSvLAZu2vkVT1H2"
+}

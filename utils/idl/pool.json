@@ -1,0 +1,332 @@
+{
+  "version": "0.1.0",
+  "name": "pool",
+  "instructions": [
+    {
+      "name": "stakeToIndividualPool",
+      "accounts": [
+        {
+          "name": "programMetadataState",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "individualPoolState",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "individualPoolAuwtTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "individualPoolLpAuwtMintAuthPda",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "individualPoolLpAuwtMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "auwtState",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "poolCpiAuthPda",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "staker",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "stakerState",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "stakerAuwtAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "stakerLpAuwtAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "sysvarRent",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "sysvarClock",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "auwtProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "auwtAmount",
+          "type": "u64"
+        }
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 16000,
+      "name": "AddressInvalidPIA",
+      "msg": "Address: invalid program initializer authority"
+    },
+    {
+      "code": 16001,
+      "name": "AddressInvalidSPID",
+      "msg": "Address: invalid system program ID"
+    },
+    {
+      "code": 16002,
+      "name": "AddressInvalidTPID",
+      "msg": "Address: invalid token program ID"
+    },
+    {
+      "code": 16003,
+      "name": "AddressInvalidSysvarRent",
+      "msg": "Address: invalid sysvar_rent"
+    },
+    {
+      "code": 16004,
+      "name": "AddressInvalidSysvarClock",
+      "msg": "Address: invalid sysvar_clock"
+    },
+    {
+      "code": 16005,
+      "name": "AddressInvalidAdminAuth",
+      "msg": "Address: invalid admin authority"
+    },
+    {
+      "code": 16006,
+      "name": "AddressInvalidAUWTMint",
+      "msg": "Address: invalid aUWT mint"
+    },
+    {
+      "code": 16007,
+      "name": "AddressInvalidCommonPoolAUWTTOkenAccount",
+      "msg": "Address: invalid common pool aUWT token account"
+    },
+    {
+      "code": 16008,
+      "name": "AddressInvalidCommonPoolLpAUWTMintAuthPda",
+      "msg": "Address: invalid common pool LP AUWT Mint Auth PDA"
+    },
+    {
+      "code": 16009,
+      "name": "AddressInvalidCommonPoolLpAUWTMint",
+      "msg": "Address: invalid common pool LP AUWT Mint"
+    },
+    {
+      "code": 16010,
+      "name": "AddressInvalidAUWTAuthPda",
+      "msg": "Address: invalid AUWT Mint PDA"
+    },
+    {
+      "code": 16011,
+      "name": "AddressInvalidUnearnedPremiumAUWTTokenAccount",
+      "msg": "Address: invalid unearned premium AUWT token account"
+    },
+    {
+      "code": 16012,
+      "name": "AddressInvalidAuwtCommonPremiumAUWTTokenAccount",
+      "msg": "Address: invalid auwt common premium AUWT token account"
+    },
+    {
+      "code": 16013,
+      "name": "AddressInvalidIndividualPremiumAUWTTokenAccount",
+      "msg": "Address: invalid individual premium AUWT token account"
+    },
+    {
+      "code": 16014,
+      "name": "AddressInvalidCaller",
+      "msg": "Address: invalid Caller"
+    },
+    {
+      "code": 16015,
+      "name": "AddressInvalidATID",
+      "msg": "Address: invalid AUWT token program ID"
+    },
+    {
+      "code": 16016,
+      "name": "AddressInvalidPoolCPIAuthPda",
+      "msg": "Address: invalid pool CPI AUTH PDA"
+    },
+    {
+      "code": 16017,
+      "name": "AddressInvalidTreasuryAuwtAccount",
+      "msg": "Address: invalid treasury auwt account"
+    },
+    {
+      "code": 26000,
+      "name": "OwnerSystemProgramID",
+      "msg": "Owner: should be system program ID"
+    },
+    {
+      "code": 26001,
+      "name": "OwnerTokenProgramID",
+      "msg": "Owner: should be token program ID"
+    },
+    {
+      "code": 26002,
+      "name": "OwnerMyProgramID",
+      "msg": "Owner: should be my program ID"
+    },
+    {
+      "code": 36000,
+      "name": "CtxInvalidProgramId",
+      "msg": "Ctx: Invalid program id. For using program from another account please update id in the code"
+    },
+    {
+      "code": 36001,
+      "name": "CtxNoRemainingAccounts",
+      "msg": "Ctx: No remaining accounts"
+    },
+    {
+      "code": 46000,
+      "name": "ArgsNumberTooLow",
+      "msg": "Args: Number too low"
+    },
+    {
+      "code": 46001,
+      "name": "ArgsNumberTooHigh",
+      "msg": "Args: Number too high"
+    },
+    {
+      "code": 56000,
+      "name": "SignerInvalid",
+      "msg": "Signer: Invalid"
+    },
+    {
+      "code": 66000,
+      "name": "ConstraintInvalidTAOwner",
+      "msg": "Constraint: Invalid token account owner"
+    },
+    {
+      "code": 66001,
+      "name": "ConstraintInvalidTAMint",
+      "msg": "Constraint: Invalid token account mint"
+    },
+    {
+      "code": 66002,
+      "name": "ConstraintMinAccountRent",
+      "msg": "Constraint: Need minimum account rent"
+    },
+    {
+      "code": 66003,
+      "name": "ConstraintMinTokenAccountRent",
+      "msg": "Constraint: Need minimum token account rent"
+    },
+    {
+      "code": 66004,
+      "name": "ConstraintMintFreezeAuthNone",
+      "msg": "Constraint: mint freeze_authority should be none"
+    },
+    {
+      "code": 66005,
+      "name": "ConstraintMintFreezeAuthInvalid",
+      "msg": "Constraint: invalid mint freeze_authority"
+    },
+    {
+      "code": 66006,
+      "name": "ConstraintInsufficientFunds",
+      "msg": "Constraint: insufficient funds"
+    },
+    {
+      "code": 66007,
+      "name": "ConstraintInvalidProductID",
+      "msg": "Constraint: invalid product id"
+    },
+    {
+      "code": 66008,
+      "name": "ConstraintInvalidCoverID",
+      "msg": "Constraint: invalid cover id"
+    },
+    {
+      "code": 66009,
+      "name": "ConstraintInvalidExpiredCover",
+      "msg": "Constraint: invalid expired cover"
+    },
+    {
+      "code": 66010,
+      "name": "ConstraintInvalidCoverOccupiedAmounts",
+      "msg": "Constraint: invalid cover occupied amounts"
+    },
+    {
+      "code": 66011,
+      "name": "ConstraintInvalidActiveCover",
+      "msg": "Constraint: invalid active cover"
+    },
+    {
+      "code": 66012,
+      "name": "ConstraintInvalidProgramMetadataState",
+      "msg": "Constraint: invalid program metadata state"
+    },
+    {
+      "code": 66013,
+      "name": "ConstraintInvalidAuwtMint",
+      "msg": "Constraint: invalid auwt mint"
+    },
+    {
+      "code": 66014,
+      "name": "ConstraintNonSameAdminKey",
+      "msg": "Constraint: non same admin key"
+    },
+    {
+      "code": 66015,
+      "name": "ConstraintStateProgramIsPaused",
+      "msg": "Constraint: program is paused"
+    },
+    {
+      "code": 66016,
+      "name": "ConstraintStateIndividualPoolIsPaused",
+      "msg": "Constraint: individual pool is paused"
+    },
+    {
+      "code": 66017,
+      "name": "ConstraintInvalidDirectMintAmount",
+      "msg": "Constraint: invalid direct mint amount"
+    },
+    {
+      "code": 76000,
+      "name": "ValidationFailure",
+      "msg": "Validation: Failure"
+    },
+    {
+      "code": 76001,
+      "name": "ValidationInsufficientCapacityAmount",
+      "msg": "Validation: Insufficient capacity amount"
+    }
+  ],
+  "metadata": {
+    "address": "2TsVk3VEBtaig1NhbN5vzXh5UowyFtGenSJUEGgw85V8"
+  }
+}
