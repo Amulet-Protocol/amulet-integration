@@ -1,7 +1,10 @@
 {
     "Programs": {
         "AmuletSolStakingProgram": "AFX6h67CCoqcJcoFbq12dabMLDruQ38U2nogpeU7ECLa",
-        "AuwtTokenProgram": "9cwdovuEutgqDfJ9gujdRzTPgKkdJ4UNXkDP9wnxeBkM"
+        "AuwtTokenProgram": "9cwdovuEutgqDfJ9gujdRzTPgKkdJ4UNXkDP9wnxeBkM",
+        "QuotationProgram": "5LJNJevFdTDnCjbAeEFsN2oGSxESBLuSodvdUy5VfBY6",
+        "CoverProgram": "8x3i9o22M8tF2SvYgkqUhSZfjKYeKJSi6rPpJnWE99Fi",
+        "PoolProgram": "8RfV7fpMZFC9cmkq45z3u7vPEhgECZHP5dqfiePrNpaA"
     },
     "auwtState": "9wGi3eQtYTv2Lw5pK9Ru9hyquyvBKLkA6fBQsYa9Ls1j",
     "auwtMintAuthPda": "9hr8agnwYL72aaGdiWnDrqS1ZWDAsRZ7h7PrWQSbQkpu",
@@ -24,6 +27,7 @@
         "1": {
             "name": "Raydium",
             "productStatePda": "ERtAtfCyoD21CpBzSrgVxifKyXRqqoJC2cH1byNSH8Yr",
+            "quotationStatePda": "TadtFZ5ca97RXa5P4HrLTwWZTbGMPfTYwiiU4pt8F2P",
             "individualPoolStatePda": "4ZwRL1V4L5iZ2ujQVMCdRPpj7u5gA6kwvfZ3PkpNBcUL",
             "individualPoolLpAuwtMintAuthPda": "4fnuCM6hdgB5nH3W5aaTFQ19Jbc4omhLybq5gTyLj4Hx",
             "individualPoolAuwtTokenAccount": "DeQ6xdBiSEirh8WGXAQBDadDVxSexM8VwsxnJYyvQq49",
@@ -32,6 +36,7 @@
         "2": {
             "name": "Solend",
             "productStatePda": "V4FmMKLPuZigoHGvFjv7gi4M1qBAYtAxmcFjBxsgFN9",
+            "quotationStatePda": "3uX8WWCLvXBjFfNxyUqQkS7MDR8yNTN91pkt2wWu7xgZ",
             "individualPoolStatePda": "BtczqJjhNWc2VR851zpRtEfHwbzTBc29LYSLLXgkDGhz",
             "individualPoolLpAuwtMintAuthPda": "Au5PQZThb6gqekzuxpQQwFKKYWwLE9UouBmVtwY9RLhi",
             "individualPoolAuwtTokenAccount": "DeQ6xdBiSEirh8WGXAQBDadDVxSexM8VwsxnJYyvQq49",
@@ -40,6 +45,7 @@
         "3": {
             "name": "Tulip Protocol",
             "productStatePda": "9unBosYh5ggfRaVpvAY2dvtX6L26crnQzRwAufATayzS",
+            "quotationStatePda": "5MTAXmWyJd9udiZGQQAEhNriTyr157AFXW8f7nKonKmB",
             "individualPoolStatePda": "FByJ7iKVLt443ZRMCV3cXeVwktL5CRkqfMxTMmKrGBhZ",
             "individualPoolLpAuwtMintAuthPda": "4qRjVB2j16ke9HskjTQn84DjknP5B6LYGKjRAMSYAeo2",
             "individualPoolAuwtTokenAccount": "DeQ6xdBiSEirh8WGXAQBDadDVxSexM8VwsxnJYyvQq49",
@@ -48,6 +54,7 @@
         "4": {
             "name": "Port Finance",
             "productStatePda": "2FEDsmRw54KrgGT9Fj52YqZiEgjKPmuL3Us3Fsf4nqgR",
+            "quotationStatePda": "CHhNhegx4jPr19EmFrQo1Ug1eKRQqYV1oiCnwU4fhrZ6",
             "individualPoolStatePda": "9MwdbwMLXkEk1oxUtTdcDZhJ5P3bo8i4VXb69ZAKm3W7",
             "individualPoolLpAuwtMintAuthPda": "DgjkXp6ty9B9sybXK9pi5RhEXSZ3qPx31iKQYY95SksM",
             "individualPoolAuwtTokenAccount": "DeQ6xdBiSEirh8WGXAQBDadDVxSexM8VwsxnJYyvQq49",
@@ -56,6 +63,7 @@
         "5": {
             "name": "Mango",
             "productStatePda": "2UQSyy34D2bPytGZiEqmSvMJD6xAtZd95DfDPpPFxMPe",
+            "quotationStatePda": "vs5tzTM8oiA1mHikxbsVF5gfYfQFViX9ATZFdnoscPB",
             "individualPoolStatePda": "Hb7rSLH7e34X7EVKR2djNkQDBd5NCcveorq8GNxiSvYk",
             "individualPoolLpAuwtMintAuthPda": "GkhD6viUxBJfeKzrSssAq7gWkmZbCC9icpfPH7Hdj2xp",
             "individualPoolAuwtTokenAccount": "DeQ6xdBiSEirh8WGXAQBDadDVxSexM8VwsxnJYyvQq49",
@@ -64,10 +72,29 @@
         "6": {
             "name": "Orca",
             "productStatePda": "37MdYNm2FtXX8uvRnWMqN8LqUgH3oLzbCo9fpDJWxtik",
+            "quotationStatePda": "5vXxvyEHq837FWzJNwv6ZuGWPnuAefQdRhn4Zhb5hQrC",
             "individualPoolStatePda": "H2GxgG7QgteBqeaMembon5tAN3XyPFtLKeCrgHxMxpVB",
             "individualPoolLpAuwtMintAuthPda": "EdTUh6P9AGuoiS4FxNgHLGm6YoVoKjCR4zwPnHu6Q26j",
             "individualPoolAuwtTokenAccount": "DeQ6xdBiSEirh8WGXAQBDadDVxSexM8VwsxnJYyvQq49",
             "individualPoolLpAuwtMint": "FArtsKtgYFRSAyY8baWiBhbkWSNY38WnGZT4E9wL5uhU"
+        },
+        "7": {
+            "name": "Hubble",
+            "productStatePda": "6Fy15kq7GjaEEFyUjoktRDeAYmyQHzwyA3L9fsb6tskF",
+            "quotationStatePda": "4wA13nST7SF8KXXVAeqVFfnkiFHHf7i4MTXo2AwC4AAm",
+            "individualPoolStatePda": "66es379wV4yb2tNpuNP1y75nQS9JmxnDoFeuXVp3dXXg",
+            "individualPoolLpAuwtMintAuthPda": "5Wq7iRS3VzTCUXyUbi62XFapfj8UipVxXKQ4nGnTTtbZ",
+            "individualPoolAuwtTokenAccount": "DeQ6xdBiSEirh8WGXAQBDadDVxSexM8VwsxnJYyvQq49",
+            "individualPoolLpAuwtMint": "6ftSoKq55wqQM494AFej3pr1peu8DXhmZp4PetozmTPP"
+        },
+        "8": {
+            "name": "Francium",
+            "productStatePda": "BXY3KpTsuS8VY33grqWT3T9qHuxGEgRbeovJUQYN35UH",
+            "quotationStatePda": "Eb8DjwYWRwoUkpnCoyJaVHrerSZSzQ8UFPk8qGahtWzY",
+            "individualPoolStatePda": "CZJNUassGSkPxYRtNrd69T54gt2RejrngXxsF75sKLv2",
+            "individualPoolLpAuwtMintAuthPda": "J2qx5CoZjD1AjF3ocubKJEuh8TGkFGGxRFrBiXEs8Xep",
+            "individualPoolAuwtTokenAccount": "DeQ6xdBiSEirh8WGXAQBDadDVxSexM8VwsxnJYyvQq49",
+            "individualPoolLpAuwtMint": "763a2FbQx1SGNR9t8vGzYZDpsZoWomcfs2odPu3q6Tkp"
         }
     },
     "solStakingMetadataState": "DEg9mNnxwqJQiYz2mXpVJmq8Yyx14oZ2SaYpHS7mB2mx",
@@ -76,5 +103,11 @@
     "amtsolMint": "SoLW9muuNQmEAoBws7CWfYQnXRXMVEG12cQhy6LE2Zf",
     "programLiqSolPda": "CMPTLLXg7T9kqY7ZR8gccGFMXzCdGp2jNqeG91yTsbZv",
     "programLiqAmtsol": "14fx6JmWpXXUZsmobLXmf9hVkcqKuXytQxdzvBHGAm71",
-    "programPosState": "CaxYodGBcen2MVPSM1SKdAMHC2csnPSvLAZu2vkVT1H2"
+    "programPosState": "CaxYodGBcen2MVPSM1SKdAMHC2csnPSvLAZu2vkVT1H2",
+    "underwritingProgramMetadataState": "iQRWrG3XqE7PaaHSgSdHtTiqagoLi4YvW8B3y9b3jiy",
+    "premiumPoolAccountPda": "632JbevHriKtPvxncKJYa5asT76Rm77Tnrvncscufusg",
+    "quotationProgramMetadataState": "2jELmAAaX8Zj3zhBx5niKLQAKVafri6Eenfvf46PAsds",
+    "quotationResultState": "2dYwTsTuk5JaBQM3vMigMxBcEzy5wCvP2Cc16BSSYgp7",
+    "coverProgramMetadataState": "FGpUk5J6jWBebGQrGcLPQZ4yqZKk5E6q9FHMsurMscVE",
+    "underwritingCallerAuthPda": "B4EpkNB4HL6N3fTU1sTf2q1DY2ecVYtTh9JPZ4mDPJHG"
 }

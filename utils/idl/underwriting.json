@@ -1,0 +1,611 @@
+{
+  "version": "0.1.0",
+  "name": "underwriting",
+  "instructions": [
+    {
+      "name": "buyCover",
+      "accounts": [
+        {
+          "name": "programMetadataState",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "premiumPoolAccountPda",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "productState",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "poolMetadataState",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "auwtState",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "individualPoolState",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "quotationMetadataState",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "quotationState",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "quotationResultState",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "coverMetadataState",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "coverState",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "buyer",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "nftAta",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "nftMetadataState",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "underwritingCallerAuthPda",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "quotationProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "auwtProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "poolProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "coverProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "sysvarClock",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "coverId",
+          "type": "u64"
+        },
+        {
+          "name": "coverOwner",
+          "type": "publicKey"
+        },
+        {
+          "name": "coverReferrer",
+          "type": "publicKey"
+        },
+        {
+          "name": "coverProductId",
+          "type": "u64"
+        },
+        {
+          "name": "coverDurationInDays",
+          "type": "u64"
+        },
+        {
+          "name": "coverCurrency",
+          "type": "publicKey"
+        },
+        {
+          "name": "coverAmount",
+          "type": "u64"
+        }
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 16000,
+      "name": "AddressInvalidPIA",
+      "msg": "Address: invalid program initializer authority"
+    },
+    {
+      "code": 16001,
+      "name": "AddressInvalidSPID",
+      "msg": "Address: invalid system program ID"
+    },
+    {
+      "code": 16002,
+      "name": "AddressInvalidTPID",
+      "msg": "Address: invalid token program ID"
+    },
+    {
+      "code": 16003,
+      "name": "AddressInvalidSysvarRent",
+      "msg": "Address: invalid sysvar_rent"
+    },
+    {
+      "code": 16004,
+      "name": "AddressInvalidSysvarClock",
+      "msg": "Address: invalid sysvar_clock"
+    },
+    {
+      "code": 16005,
+      "name": "AddressInvalidAdminAuth",
+      "msg": "Address: invalid admin authority"
+    },
+    {
+      "code": 16006,
+      "name": "AddressInvalidAUWTMint",
+      "msg": "Address: invalid aUWT mint"
+    },
+    {
+      "code": 16007,
+      "name": "AddressInvalidAmtSolMint",
+      "msg": "Address: invalid amtSol mint"
+    },
+    {
+      "code": 16008,
+      "name": "AddressInvalidLPMint",
+      "msg": "Address: invalid lp_mint"
+    },
+    {
+      "code": 16009,
+      "name": "AddressInvalidEarnedPremiumPoolAmtSolTokenAccount",
+      "msg": "Address: invalid earned premium pool amtSol token account"
+    },
+    {
+      "code": 16010,
+      "name": "AddressInvalidEarnedPremiumPoolAuwtTokenAccount",
+      "msg": "Address: invalid earned premium pool auwt token account"
+    },
+    {
+      "code": 16011,
+      "name": "AddressInvalidUnearnedPremiumAUWTTokenAccount",
+      "msg": "Address: invalid unearned premium AUWT token account"
+    },
+    {
+      "code": 16012,
+      "name": "AddressInvalidAuwtCommonPremiumAUWTTokenAccount",
+      "msg": "Address: invalid auwt common premium AUWT token account"
+    },
+    {
+      "code": 16013,
+      "name": "AddressInvalidIndividualPremiumAUWTTokenAccount",
+      "msg": "Address: invalid individual premium AUWT token account"
+    },
+    {
+      "code": 16014,
+      "name": "AddressInvalidCommonPoolAUWTTOkenAccount",
+      "msg": "Address: invalid common pool aUWT token account"
+    },
+    {
+      "code": 16015,
+      "name": "AddressInvalidCommonPoolLpAUWTMintAuthPda",
+      "msg": "Address: invalid common pool LP AUWT Mint Auth PDA"
+    },
+    {
+      "code": 16016,
+      "name": "AddressInvalidCommonPoolLpAUWTMint",
+      "msg": "Address: invalid common pool LP AUWT Mint"
+    },
+    {
+      "code": 16017,
+      "name": "AddressInvalidAUWTAuthPda",
+      "msg": "Address: invalid AUWT Mint PDA"
+    },
+    {
+      "code": 16018,
+      "name": "AddressInvalidPremiumPoolAccountPda",
+      "msg": "Address: invalid amtSol Mint"
+    },
+    {
+      "code": 16019,
+      "name": "AddressInvalidQTTNID",
+      "msg": "Address: invalid Quotation Program ID"
+    },
+    {
+      "code": 16020,
+      "name": "AddressInvalidCVPID",
+      "msg": "Address: invalid Cover Program ID"
+    },
+    {
+      "code": 16021,
+      "name": "AddressInvalidPLPID",
+      "msg": "Address: invalid Pool Program ID"
+    },
+    {
+      "code": 16022,
+      "name": "AddressInvalidCallerKey",
+      "msg": "Address: invalid Caller Key"
+    },
+    {
+      "code": 16023,
+      "name": "AddressInvalidPPSP",
+      "msg": "Address: invalid program_pos_sol_pda"
+    },
+    {
+      "code": 16024,
+      "name": "AddressInvalidPLA",
+      "msg": "Address: invalid program_liq_amtsol"
+    },
+    {
+      "code": 16025,
+      "name": "AddressInvalidPLAAP",
+      "msg": "Address: invalid program_liq_sol_pda"
+    },
+    {
+      "code": 16026,
+      "name": "AddressInvalidPLSP",
+      "msg": "Address: invalid amtsol_mint_auth_pda"
+    },
+    {
+      "code": 16027,
+      "name": "AddressInvalidAMAP",
+      "msg": "Address: invalid auwt_mint_auth_pda"
+    },
+    {
+      "code": 16028,
+      "name": "AddressInvalidAPCP",
+      "msg": "Address: invalid spl_sol_staking_caller_pda"
+    },
+    {
+      "code": 16029,
+      "name": "AddressInvalidAP",
+      "msg": "Address: invalid auwt_program"
+    },
+    {
+      "code": 16030,
+      "name": "AddressInvalidPLSST",
+      "msg": "Address: invalid program_liq_staked_spl_ta"
+    },
+    {
+      "code": 16031,
+      "name": "AddressInvalidPLSSTAP",
+      "msg": "Address: invalid program_liq_staked_spl_ta_auth_pda"
+    },
+    {
+      "code": 16032,
+      "name": "AddressInvalidPLAT",
+      "msg": "Address: invalid program_liq_auwt_ta"
+    },
+    {
+      "code": 16033,
+      "name": "AddressInvalidPLATAP",
+      "msg": "Address: invalid program_liq_auwt_ta_auth_pda"
+    },
+    {
+      "code": 16034,
+      "name": "AddressInvalidPSST",
+      "msg": "Address: invalid program_staked_spl_ta"
+    },
+    {
+      "code": 16035,
+      "name": "AddressInvalidATID",
+      "msg": "Address: invalid AUWT token program ID"
+    },
+    {
+      "code": 16036,
+      "name": "AddressInvalidAMSolStkP",
+      "msg": "Address: invalid amulet_sol_staking program"
+    },
+    {
+      "code": 16037,
+      "name": "AddressInvalidSplSolStkP",
+      "msg": "Address: invalid spl_sol_staking program"
+    },
+    {
+      "code": 16038,
+      "name": "AddressInvalidATPID",
+      "msg": "Address: invalid associated program program"
+    },
+    {
+      "code": 16039,
+      "name": "AddressInvalidTreasurySolAccount",
+      "msg": "Address: invalid treasury sol account"
+    },
+    {
+      "code": 26000,
+      "name": "OwnerSystemProgramID",
+      "msg": "Owner: should be system program ID"
+    },
+    {
+      "code": 26001,
+      "name": "OwnerTokenProgramID",
+      "msg": "Owner: should be token program ID"
+    },
+    {
+      "code": 26002,
+      "name": "OwnerMyProgramID",
+      "msg": "Owner: should be my program ID"
+    },
+    {
+      "code": 26003,
+      "name": "OwnerAuwtTokenProgramID",
+      "msg": "Owner: should be auwt-token program ID"
+    },
+    {
+      "code": 26004,
+      "name": "OwnerAmuletSolStakingProgramID",
+      "msg": "Owner: should be amulet sol staking program ID"
+    },
+    {
+      "code": 26005,
+      "name": "OwnerSplStakingProgramID",
+      "msg": "Owner: should be spl staking program ID"
+    },
+    {
+      "code": 26006,
+      "name": "OwnerPoolProgramID",
+      "msg": "Owner: should be pool program ID"
+    },
+    {
+      "code": 26007,
+      "name": "OwnerExchangeRateProgramID",
+      "msg": "Owner: should be exchange rate program ID"
+    },
+    {
+      "code": 36000,
+      "name": "CtxInvalidProgramId",
+      "msg": "Ctx: Invalid program id. For using program from another account please update id in the code"
+    },
+    {
+      "code": 36001,
+      "name": "CtxNoRemainingAccounts",
+      "msg": "Ctx: No remaining accounts"
+    },
+    {
+      "code": 46000,
+      "name": "ArgsNumberTooLow",
+      "msg": "Args: Number too low"
+    },
+    {
+      "code": 46001,
+      "name": "ArgsNumberTooHigh",
+      "msg": "Args: Number too high"
+    },
+    {
+      "code": 56000,
+      "name": "SignerInvalid",
+      "msg": "Signer: Invalid"
+    },
+    {
+      "code": 66000,
+      "name": "ConstraintInvalidTAOwner",
+      "msg": "Constraint: Invalid token account owner"
+    },
+    {
+      "code": 66001,
+      "name": "ConstraintInvalidTAMint",
+      "msg": "Constraint: Invalid token account mint"
+    },
+    {
+      "code": 66002,
+      "name": "ConstraintInvalidPriceSlot",
+      "msg": "Constraint: Invalid price slot"
+    },
+    {
+      "code": 66003,
+      "name": "ConstraintInvalidSplMint",
+      "msg": "Constraint: Invalid spl mint"
+    },
+    {
+      "code": 66004,
+      "name": "ConstraintInvalidAuwtMint",
+      "msg": "Constraint: Invalid auwt mint"
+    },
+    {
+      "code": 66005,
+      "name": "ConstraintMinAccountRent",
+      "msg": "Constraint: Need minimum account rent"
+    },
+    {
+      "code": 66006,
+      "name": "ConstraintMinTokenAccountRent",
+      "msg": "Constraint: Need minimum token account rent"
+    },
+    {
+      "code": 66007,
+      "name": "ConstraintMintFreezeAuthNone",
+      "msg": "Constraint: mint freeze_authority should be none"
+    },
+    {
+      "code": 66008,
+      "name": "ConstraintInvalidIndex",
+      "msg": "Constraint: Invalid index"
+    },
+    {
+      "code": 66009,
+      "name": "ConstraintInsufficientFunds",
+      "msg": "Constraint: insufficient funds"
+    },
+    {
+      "code": 66010,
+      "name": "ConstraintInvalidCoverCurrency",
+      "msg": "Constraint: invalid cover currency"
+    },
+    {
+      "code": 66011,
+      "name": "ConstraintInvalidProductState",
+      "msg": "Constraint: invalid product state"
+    },
+    {
+      "code": 66012,
+      "name": "ConstraintInvalidProductStatus",
+      "msg": "Constraint: invalid product status"
+    },
+    {
+      "code": 66013,
+      "name": "ConstraintInvalidQuotationState",
+      "msg": "Constraint: invalid quotation state"
+    },
+    {
+      "code": 66014,
+      "name": "ConstraintInvalidCoverID",
+      "msg": "Constraint: invalid cover id"
+    },
+    {
+      "code": 66015,
+      "name": "ConstraintInvalidCoverState",
+      "msg": "Constraint: invalid cover state"
+    },
+    {
+      "code": 66016,
+      "name": "ConstraintInvalidCoverDurationInDays",
+      "msg": "Constraint: invalid cover duration in days"
+    },
+    {
+      "code": 66017,
+      "name": "ConstraintNonEmptyLamports",
+      "msg": "Constraint: non empty lamports"
+    },
+    {
+      "code": 66018,
+      "name": "ConstraintInvalidPoolMetadataState",
+      "msg": "Constraint: invalid pool metadata state"
+    },
+    {
+      "code": 66019,
+      "name": "ConstraintInvalidIndividualPoolState",
+      "msg": "Constraint: invalid individual pool state"
+    },
+    {
+      "code": 66020,
+      "name": "ConstraintInvalidRentPayer",
+      "msg": "Constraint: invalid rent payer"
+    },
+    {
+      "code": 66021,
+      "name": "ConstraintInvalidCoverOwner",
+      "msg": "Constraint: invalid cover owner"
+    },
+    {
+      "code": 66022,
+      "name": "ConstraintInvalidExpiredCover",
+      "msg": "Constraint: invalid expired cover"
+    },
+    {
+      "code": 66023,
+      "name": "ConstraintInvalidActiveCover",
+      "msg": "Constraint: invalid active cover"
+    },
+    {
+      "code": 66024,
+      "name": "ConstraintInvalidCoverOccupiedAmounts",
+      "msg": "Constraint: invalid cover occupied amounts"
+    },
+    {
+      "code": 66025,
+      "name": "ConstraintInvalidLastDispatchTimestamp",
+      "msg": "Constraint: invalid last dispatch timestamp"
+    },
+    {
+      "code": 66026,
+      "name": "ConstraintInvalidLastDispatchTotalAmount",
+      "msg": "Constraint: invalid last dispatch total amount"
+    },
+    {
+      "code": 66027,
+      "name": "ConstraintInvalidTreasuryPremiumAccount",
+      "msg": "Constraint: invalid treasury premium account"
+    },
+    {
+      "code": 66028,
+      "name": "ConstraintNonSameAdminKey",
+      "msg": "Constraint: non same admin key"
+    },
+    {
+      "code": 66029,
+      "name": "ConstraintStateProgramIsPaused",
+      "msg": "Constraint: program is paused"
+    },
+    {
+      "code": 66030,
+      "name": "ConstraintInvalidRenewCoverWithClaimedAmount",
+      "msg": "Constraint: claimed cover cannot be renewed"
+    },
+    {
+      "code": 66031,
+      "name": "ConstraintInvalidTokenAccountOwner",
+      "msg": "Constraint: invalid token account owner"
+    },
+    {
+      "code": 66032,
+      "name": "ConstraintNFTNotPresent",
+      "msg": "Constraint: nft not present"
+    },
+    {
+      "code": 66033,
+      "name": "ConstraintMismatchNFTMetadata",
+      "msg": "Constraint: mismatch nft metadata"
+    },
+    {
+      "code": 76000,
+      "name": "CalculationFailure",
+      "msg": "Calculation: general failure"
+    },
+    {
+      "code": 76001,
+      "name": "CalculationTooSmallNumber",
+      "msg": "Calculation: too small number"
+    },
+    {
+      "code": 76002,
+      "name": "CalculationTooLargeNumber",
+      "msg": "Calculation: too large number"
+    },
+    {
+      "code": 86000,
+      "name": "UnpackFailure",
+      "msg": "Unpack: general failure"
+    },
+    {
+      "code": 86001,
+      "name": "UnpackInvalidTokenAccount",
+      "msg": "Unpack: invalid token account"
+    }
+  ],
+  "metadata": {
+    "address": "FVP4fqjp3VHyPgkzjUwjcUcWv2DiYffW4PfbKPz8Tfx3"
+  }
+}

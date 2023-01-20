@@ -18,12 +18,15 @@ async function main() {
     const programId = new web3.PublicKey(idl.metadata.address)
     const program = new anchor.Program(idl, programId, provider)
 
+    // Get the cover product address
     const product = address.products["1"]
+    // Create or get the associate token account address from the LP token
     const stakerIndividualPoolLpAta = await getOrCreateAssociatedTokenAccount(connection, wallet.payer, new web3.PublicKey(product.individualPoolLpAuwtMint), wallet.publicKey)
+    // Get the user state account pda for storing user state
     const [stakerStateAccountPda] = await anchor.web3.PublicKey.findProgramAddress(
       [
-        Buffer.from(new web3.PublicKey(address.poolProgramMetadataState).toBytes().slice(0, 32)),
-        Buffer.from(new web3.PublicKey(product.individualPoolStatePda).toBytes().slice(0, 32)),
+        Buffer.from(address.poolProgramMetadataState.slice(0, 32)),
+        Buffer.from(product.individualPoolStatePda.slice(0, 32)),
         Buffer.from(anchor.utils.bytes.utf8.encode("staker_state_seed")),
         Buffer.from(wallet.payer.publicKey.toBytes().slice(0, 32))
       ],
