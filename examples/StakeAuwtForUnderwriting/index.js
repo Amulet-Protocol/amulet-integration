@@ -6,6 +6,9 @@ const { TOKEN_PROGRAM_ID, getOrCreateAssociatedTokenAccount } = require('@solana
 const idl = require("../../utils/idl/pool.json")
 const address = require("../../utils/address.json")
 
+/**
+ * Stake aUWT token to a specific product pool for underwriting sample function.
+ */
 async function main() {
     const connection = new web3.Connection(process.env.RPC_URL)
     const secretKey = Buffer.from(JSON.parse(process.env.SECRET_KEY))
@@ -21,7 +24,8 @@ async function main() {
     // Get the cover product address
     const productId = "1"
     const product = address.products[productId]
-    // Create or get the associate token account address from the LP token
+    // Staker need a token account to store the LP token,
+    // thus we create or get the associate token account address here
     const stakerIndividualPoolLpAta = await getOrCreateAssociatedTokenAccount(connection, wallet.payer, new web3.PublicKey(product.individualPoolLpAuwtMint), wallet.publicKey)
     // Get the user state account pda for storing user state
     const [stakerStateAccountPda] = await anchor.web3.PublicKey.findProgramAddressSync(
@@ -33,8 +37,11 @@ async function main() {
       ],
       program.programId
     )
+    // Staking amount in aUWT, here it is set as 1 aUWT
     const stakedAuwtAmount = 1 * 10 ** 9
+    // Create or get the aUWT token account address
     const auwtTokenAccount = await getOrCreateAssociatedTokenAccount(connection, wallet.payer, new web3.PublicKey(address.auwtMint), wallet.publicKey)
+    // Execute stake auwt to product pool instruction
     const tx = await program.methods.stakeToIndividualPool(new anchor.BN(stakedAuwtAmount))
         .accounts({
             programMetadataState: address.poolProgramMetadataState,

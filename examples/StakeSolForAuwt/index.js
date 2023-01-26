@@ -6,6 +6,9 @@ const { TOKEN_PROGRAM_ID, ASSOCIATED_TOKEN_PROGRAM_ID, getOrCreateAssociatedToke
 const idl = require("../../utils/idl/spl_sol_staking.json")
 const address = require("../../utils/address.json")
 
+/**
+ * Stake SOL for aUWT token sample function.
+ */
 async function main() {
     const connection = new web3.Connection(process.env.RPC_URL)
     const secretKey = Buffer.from(JSON.parse(process.env.SECRET_KEY))
@@ -17,12 +20,18 @@ async function main() {
     const provider = new anchor.AnchorProvider(connection, wallet, confirmOpts)
     const programId = new web3.PublicKey(idl.metadata.address)
     const program = new anchor.Program(idl, programId, provider )
+    // Increase the maximum compute unit
     const additionalComputeBudgetInstruction = web3.ComputeBudgetProgram.setComputeUnitLimit({
         units: 400000
     });
+    // SOL is staked for amtSOL first before staked for aUWT,
+    // thus an amtSOL token account is created to temporary store the staked amtSOL token.
     const amtsolTempTokenAccountKeypair = web3.Keypair.generate()
+    // Create or get the associate token account address for storing aUWT token.
     const auwtTokenAccount = await getOrCreateAssociatedTokenAccount(connection, wallet.payer, new web3.PublicKey(address.auwtMint), wallet.publicKey)
+     // Staking amount in SOL, here it is set as 1 SOL
     const solAmount = new anchor.BN(1 * 10**9)
+     // Execute swapping SOL for aUWT token instruction
     const tx = await program.methods.mintFromSolToAuwt(solAmount).accounts({
         solstakingProgramMetadataState: address.solStakingMetadataState,
         solstakingProgramPosState: address.programPosState,
