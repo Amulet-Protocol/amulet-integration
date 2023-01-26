@@ -5,6 +5,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 const idl = require("../../utils/idl/underwriting.json")
 const coverIdl = require("../../utils/idl/cover.json")
+const quotationIdl = require("../../utils/idl/quotation.json")
 const address = require("../../utils/address.json")
 
 /**
@@ -19,6 +20,44 @@ async function getCurrentCoverId(provider) {
     const program = new anchor.Program(coverIdl, programId, provider)
     const coverMetadataState = await program.account.coverMetadataState.fetch(new web3.PublicKey(address.coverProgramMetadataState))
     return coverMetadataState.coverCount
+}
+
+/**
+ * Calculate the premium amount and discount amount for the
+ * specific product, cover amount and cover duration.
+ * @param  {anchor.AnchorProvider} provider Anchor provider
+ * @param {Object} product The product address
+ * @param {anchor.BN} coverProductId The cover product identifier
+ * @param {web3.PublicKey} coverCurrency The cover currency, by default in aUWT
+ * @param {anchor.BN} coverDurationInDays The cover duration in days
+ * @param {anchor.BN} coverAmount The cover amount in aUWT currency, decimals of 9
+ * @param {web3.PublicKey} nftMetadataState The NFT metaplex token metadata PDA address. By default it is null
+ * @return {Object} The quotation result state object
+ */
+async function getPremium(provider, product, coverProductId, coverCurrency, 
+    coverDurationInDays, coverAmount, nftMetadataState = null) {
+    const programId = new web3.PublicKey(quotationIdl.metadata.address)
+    const program = new anchor.Program(quotationIdl, programId, provider)
+    const tx = await program.methods.getPremium(
+        coverProductId,
+        coverCurrency,
+        coverDurationInDays,
+        coverAmount
+    ).accounts({
+        programMetadataState: address.quotationProgramMetadataState,
+        productState: product.productStatePda,
+        quotationState: product.quotationStatePda,
+        quotationResultState: address.quotationResultState,
+        poolMetadataState: address.poolProgramMetadataState,
+        auwtState: address.auwtState,
+        individualPoolState: product.individualPoolStatePda,
+        nftMetadataState: nftMetadataState ?? anchor.web3.SystemProgram.programId
+    }).rpc();
+    console.log("get premium transaction: ", tx);
+    
+    const quotationResultState = await program.account.quotationResultState
+        .fetch(new web3.PublicKey(address.quotationResultState))
+    return quotationResultState
 }
 
 /**
@@ -68,6 +107,13 @@ async function buyCoverWithoutNFT() {
       ],
       new web3.PublicKey(address.Programs.CoverProgram)
     );
+
+    // Check the premium price before buying cover
+    const quotationResult = await getPremium(provider, product, coverProductId, coverCurrency, 
+        coverDurationInDays, coverAmount)
+    console.log("Premium Amount:", quotationResult.premiumAmount.toString(),
+        "Discount Amount :", quotationResult.discountAmount.toString())
+
     // Execute buy cover instruction
     const tx = await program.methods.buyCover(
         coverId,
@@ -154,6 +200,7 @@ async function buyCoverWithNFT() {
     );
 
     // The NFT mint token address, currently supports Metabears Collection — Basic, Elite, Pro
+    // It should be the NFT mint address owned by the cover owner, if not the transaction will fail. 
     const nftTokenMint = new web3.PublicKey("TmKyuSh7emnPk2dhkRjvHzb9xXpt6eCauHnrgS86tWN")
     // Create or get the NFT token account address
     const nftAta = await getOrCreateAssociatedTokenAccount(connection, wallet.payer, nftTokenMint, wallet.payer.publicKey)
@@ -167,6 +214,12 @@ async function buyCoverWithNFT() {
         Buffer.from(metaplexProgramId.toBytes().slice(0, 32)),
         Buffer.from(nftTokenMint.toBytes().slice(0, 32))
       ], metaplexProgramId)
+    // Check the premium price before buying cover
+    const quotationResult = await getPremium(provider, product, coverProductId, coverCurrency, 
+        coverDurationInDays, coverAmount, nftMetadataAddress)
+    console.log("Premium Amount:", quotationResult.premiumAmount.toString(),
+        "Discount Amount :", quotationResult.discountAmount.toString())
+
     // Execute buy cover instruction
     const tx = await program.methods.buyCover(
         coverId,
